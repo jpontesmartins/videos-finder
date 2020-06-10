@@ -1,25 +1,29 @@
-const ahgora = require('./index');
+const VideosFinder = require('./index');
 
 describe ('videos to watch', () => {
     it('should return 2 videos', () => {
         const searchTerm = "filosofia";
         const availableMinutes = [15, 120, 30, 150, 20, 40, 90];
 
-        expect(ahgora.searchVideos(searchTerm).length).toBe(2);
+        const videosFinder = new VideosFinder(searchTerm, availableMinutes);
+
+        expect(videosFinder.searchVideosToWatch().length).toBe(2);
     });
 
     it ('most frequent words', () => {
         const searchTerm = "filosofia";
-        const videos = ahgora.searchVideos(searchTerm);
-        expect(ahgora.calculeMostFrequentWords(videos)[0]).toBe("platao");
+        const availableMinutes = [15, 120, 30, 150, 20, 40, 90];
+
+        const videosFinder = new VideosFinder(searchTerm, availableMinutes);
+        expect(videosFinder.getFiveMostFrequentWords()[0]).toBe("platao");
     });
 
     it ('total of days to watch all playlist', () => {
-        const availableMinutes = [15, 120, 30, 150, 20, 40, 90];
         const searchTerm = "filosofia";
-        const videos = ahgora.searchVideos(searchTerm);
+        const availableMinutes = [15, 120, 30, 150, 20, 40, 90];
 
-        expect(ahgora.calculateDaysToWatch(videos, availableMinutes)).toBe(8);
+        const videosFinder = new VideosFinder(searchTerm, availableMinutes);
+        expect(videosFinder.getTotalOfDaysToWatch()).toBe(8);
     });
 
 });

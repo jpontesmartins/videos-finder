@@ -1,52 +1,25 @@
+const wordsFrequency = require('./words-frequency');
+const playlistOrganizer = require('./playlist-organizer');
+const serviceVideos = require('./service-videos');
 
-//input
-const searchTerm = "filosofia";
-const minutesAvailable = [15, 120, 30, 150, 20, 40, 90]
-
-//processing
-//service as a interface to detail (api youtube)
-const videos = searchVideos(searchTerm);
-
-function searchVideos(searchTerm) {
-    const video1 = {
-        title: "title1",
-        description: "description1, platao",
-        minutes: 20
-    }
-    const video2 = {
-        title: "title2 platao",
-        description: "description2",
-        minutes: 30
+class VideosFinder {
+    constructor(searchTerm, minutesAvailable) {
+        this.searchTerm = searchTerm;
+        this.minutesAvailable = minutesAvailable;
+        this.videos = [];
     }
 
-    const result = [video1, video2];
+    searchVideosToWatch() {
+        return serviceVideos.searchVideos(this.searchTerm);
+    }
 
-    return result; 
+    getTotalOfDaysToWatch() {
+        return playlistOrganizer.calculateDaysToWatch(this.videos, this.minutesAvailable);
+    }
+
+    getFiveMostFrequentWords() {
+        return wordsFrequency.calculeMostFrequentWords(this.videos);
+    }
 }
 
-const fiveMostFrequentWords = calculeMostFrequentWords(videos);
-
-function calculeMostFrequentWords(videos) {
-    const word1 = "platao";
-    return [word1];
-}
-
-const totalOfDaysToWatch = calculateDaysToWatch(videos, minutesAvailable);
-
-function calculateDaysToWatch(videos, minutesAvailable) {
-    const totalOfDays = 8;
-    return totalOfDays;
-}
-
-//output
-const result = {
-    fiveMostFrequentWords,
-    totalOfDaysToWatch
-}
-
-module.exports = {
-    searchVideos,
-    calculeMostFrequentWords,
-    calculateDaysToWatch,
-}
-
+module.exports = VideosFinder;

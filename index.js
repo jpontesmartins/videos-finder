@@ -1,6 +1,6 @@
-const wordsFrequency = require('./words-frequency');
-const playlistOrganizer = require('./playlist-organizer');
-const serviceVideos = require('./service-videos');
+const wordsFrequency = require('./domain/WordsFrequency');
+const playlistOrganizer = require('./domain/PlaylistOrganizer');
+const serviceVideos = require('./services/ServiceVideo');
 
 class VideosFinder {
     constructor(searchTerm, minutesAvailable) {

@@ -1,9 +1,8 @@
 const { google } = require('googleapis');
-const Video = require('./Video');
+const Video = require('../Video');
 const dotenv = require('dotenv').config();
 
 const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY;
-console.log(YOUTUBE_API_KEY);
 
 const youtube = google.youtube({
     version: "v3",

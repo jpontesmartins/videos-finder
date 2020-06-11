@@ -4,11 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest --watch"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "jest": "^26.0.1"
+  },
+  "dependencies": {
+    "googleapis": "^52.1.0"
   }
 }

@@ -1,16 +1,17 @@
 const wordsFrequency = require('./domain/WordsFrequency');
 const playlistOrganizer = require('./domain/PlaylistOrganizer');
-const serviceVideos = require('./services/ServiceVideo');
+const Service = require('./services/ServiceVideo');
 
 class VideosFinder {
-    constructor(searchTerm, minutesAvailable) {
+    constructor(searchTerm, minutesAvailable, platform) {
         this.searchTerm = searchTerm;
         this.minutesAvailable = minutesAvailable;
         this.videos = [];
+        this.service = new Service(platform);
     }
 
     searchVideosToWatch() {
-        return serviceVideos.searchVideos(this.searchTerm);
+        return this.service.searchVideos(this.searchTerm);
     }
 
     getTotalOfDaysToWatch() {

@@ -1,9 +1,17 @@
 const { google } = require('googleapis');
-const Video = require('../Video');
 const dotenv = require('dotenv').config();
 
 const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY;
 
+//converter para uma classe... -> YoutubeService
+// separar em Promisses...
+// cuidar para não extrapolar a quota
+
+// 1. authenticate
+// 2. search N videos about 'cats'
+// 3. search by id each video in N 
+
+//authenticate
 const youtube = google.youtube({
     version: "v3",
     auth: YOUTUBE_API_KEY
@@ -74,20 +82,6 @@ function searchOnYoutube() {
         });
     });
 }
-
-// function results() {
-//     return (err, data) => {
-//         if (err) {
-//             console.log("errroooo");
-//         }
-//         //convert to video
-//         if (data) {
-//             const video = new Video(data.data.items[0])
-//             // console.log(video.getInfo());
-//             // return video;
-//         }
-//     };
-
 
 
 module.exports = {

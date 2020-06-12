@@ -9,50 +9,89 @@ const youtube = google.youtube({
     auth: YOUTUBE_API_KEY
 });
 
-function search(term) {
-    youtube.search.list({
-        part: 'id, snippet',
-        q: 'cats',
-        videoDuration: 'any',
-        maxResults: 10
-    }, searchResults())
+async function search(term) {
+    const allVideos = await searchFullinfo();
+    console.log(allVideos);
+}
+
+
+function abc(){
+    const aaaa = new Promise(async (resolve, reject) => {
+        const allVideos = await searchOnYoutube();
+        console.log(allVideos);
+        allVideos.map(async (video, i) => {
+            console.log(video);
+            // let fullInfoVideo = await getVideoById(video);
+            // console.log(fullInfoVideo);
+            // videoss.push(fullInfoVideo);
+        });
+    });
+
+    aaaa.then(data => {
+        console.log(data);
+    });
 
 }
 
-function searchResults() {
-    return (err, data) => {
-        if (err) {
-            console.log("erroooo");
-            console.log(err);
-        }
-        if (data) {
-            const searchResult = data.data;
-            searchResult.items.forEach(item => {
-                youtube.videos.list({
-                    part: 'id, snippet, contentDetails',
-                    id: item.id.videoId
-                }, results());
-            });
-        }
-    };
+
+async function searchFullinfo() {
+    const videos = await abc();
+    console.log("videosssss");
+    console.log(videos);
+    return videos;
+
 }
 
-function results() {
-    return (err, data) => {
-        if (err) {
-            console.log("errroooo");
-        }
-        if (data) {
-            const video = new Video(data.data.items[0])
-            console.log(video.getInfo());
-        }
-    };
+function getVideoById(video) {
+    return new Promise((resolve, reject) => {
+        youtube.videos.list({
+            part: 'id, snippet, contentDetails',
+            id: video.id.videoId
+        }, (err, data) => {
+            if (data) {
+                resolve(data.data.items);
+            } else {
+                reject(data);
+            }
+        });
+    });
 }
+
+function searchOnYoutube() {
+    return new Promise((resolve, reject) => {
+        youtube.search.list({
+            part: 'id, snippet',
+            q: 'cats',
+            videoDuration: 'any',
+            maxResults: 2
+        }, (err, data) => {
+            if (data) {
+                resolve(data.data.items);
+            }
+            else {
+                reject(err);
+            }
+        });
+    });
+}
+
+// function results() {
+//     return (err, data) => {
+//         if (err) {
+//             console.log("errroooo");
+//         }
+//         //convert to video
+//         if (data) {
+//             const video = new Video(data.data.items[0])
+//             // console.log(video.getInfo());
+//             // return video;
+//         }
+//     };
+
 
 
 module.exports = {
     search
 }
 
-
-search("filosofia");
+search("lala");

@@ -3,15 +3,16 @@ const playlistOrganizer = require('./PlaylistOrganizer');
 const Service = require('../services/ServiceVideo');
 
 class VideosFinder {
-    constructor(searchTerm, minutesAvailable, platform) {
+    constructor(searchTerm, minutesAvailable, service) {
         this.searchTerm = searchTerm;
         this.minutesAvailable = minutesAvailable;
         this.videos = [];
-        this.service = new Service(platform);
+        this.service = new Service(service);
     }
 
     searchVideosToWatch() {
-        return this.service.searchVideos(this.searchTerm);
+        this.videos = this.service.searchVideos(this.searchTerm);
+        return this.videos;
     }
 
     getTotalOfDaysToWatch() {

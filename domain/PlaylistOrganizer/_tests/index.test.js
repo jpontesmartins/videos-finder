@@ -20,6 +20,7 @@ describe ('playlist organizer', () => {
         const totalOfDays = playlistOrganizer.calculateDaysToWatch(videosDuration, availableMinutes);
         
         expect(totalOfDays).toBe(8);
+        // expect(1).toBe(1);
     });
 });
 

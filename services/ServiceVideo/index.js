@@ -12,7 +12,7 @@ class Service {
         // chamar um Adapter(new YoutubeAdapter())
         const convertedVideos = []
         videos.map((video, i) => {
-            convertedVideos.push(adapter.fromYoutubeToVideoFinder(video));
+            convertedVideos.push(adapter.toVideo(video));
         });
 
         return convertedVideos;

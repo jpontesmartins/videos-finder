@@ -1,4 +1,5 @@
-const { mockResponse } = require('../ServiceVideo/Youtube/example-of-response');
+// const { mockResponse } = require('../ServiceVideo/Youtube/example-of-response');
+const { mockResponse } = require('../ServiceVideo/Youtube/example-both');
 const Video = require('./MockVideo');
 
 //utilizar Command nos Services?
@@ -10,10 +11,14 @@ class MockService {
 
     }
 
-    search(term) {
+    async search(term) {
         // call to API
         // MockResponse
-        return this._getVideos(mockResponse);
+        return new Promise((resolve, reject)=> {
+            resolve(mockResponse);
+        });
+
+
     }
 
     _getVideos(videosFound) {

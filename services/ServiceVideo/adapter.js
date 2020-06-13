@@ -1,12 +1,12 @@
 const YoutubeVideo = require('./Youtube/YoutubeVideo');
 
-function fromYoutubeToVideoFinder(youtubeVideo) {
+function toVideo(youtubeVideo) {
     const video = new YoutubeVideo(youtubeVideo);
     return video.convert();
 }
 
 module.exports = {
-    fromYoutubeToVideoFinder
+    toVideo
 }
 
 

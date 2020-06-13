@@ -18,6 +18,12 @@ describe('service video ', () => {
         expect(videosFound[3].duration).toBe(946);
     });
 
+    // it ('should return 16*60 sec', () => {
+    //     // duration: 'PT16M',
+    //     // expect('PT16M').toBe(16*60);
+
+    // });
+
     it ('should return an object from Video entity', () => {
         const service = new Service(new MockService());
         const videosFound = service.searchVideos("cats");

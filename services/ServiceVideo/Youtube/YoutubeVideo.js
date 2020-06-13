@@ -4,7 +4,7 @@ class Video {
         this.info = youtubeVideo;
     }
 
-    getInfo(){
+    convert(){
         return {
             id: this.info.id, 
             title: this.info.snippet.title, 
@@ -14,6 +14,7 @@ class Video {
     }
 
     _minutesToSeconds() {
+        //ARRUMAR AQUI O 16M
         const minutes = this.info.contentDetails.duration.split("M")[0].replace("PT","");
         const seconds = (this.info.contentDetails.duration.split("M")[1]).replace("S","");
         

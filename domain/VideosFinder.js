@@ -1,17 +1,18 @@
 const wordsFrequency = require('./WordsFrequency');
 const playlistOrganizer = require('./PlaylistOrganizer');
 const Service = require('../services/ServiceVideo');
+const adapter = require('../services/ServiceVideo/adapter');
 
 class VideosFinder {
     constructor(searchTerm, minutesAvailable, service) {
         this.searchTerm = searchTerm;
         this.minutesAvailable = minutesAvailable;
-        this.videos = [];
         this.service = new Service(service);
+        this.videos = [];
     }
 
-    searchVideosToWatch() {
-        this.videos = this.service.searchVideos(this.searchTerm);
+    async searchVideosToWatch() {
+        this.videos = await this.service.searchVideos(this.searchTerm);
         return this.videos;
     }
 

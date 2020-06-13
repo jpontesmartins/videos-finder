@@ -1,11 +1,21 @@
+const adapter = require('./adapter');
+
 class Service {
     constructor(service) {
         this.service = service;
         this.videos = [];
     }
 
-    searchVideos(searchTerm) {
-        return this.service.search(searchTerm);
+    async searchVideos(searchTerm) {
+        const videos = await this.service.search(searchTerm);
+
+        // chamar um Adapter(new YoutubeAdapter())
+        const convertedVideos = []
+        videos.map((video, i) => {
+            convertedVideos.push(adapter.fromYoutubeToVideoFinder(video));
+        });
+
+        return convertedVideos;
     }
     
 }

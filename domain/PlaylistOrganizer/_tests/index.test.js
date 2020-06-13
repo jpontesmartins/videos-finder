@@ -14,11 +14,15 @@ const playlistOrganizer = require('../index');
 
 describe ('playlist organizer', () => {
     it('should return 8 days to watch', () => {
-        const videosDuration = [20, 30, 60, 90, 200, 30, 40, 20, 60, 15]
         const availableMinutes = [15, 120, 30, 150, 20, 40, 90];
+        const videosDuration = [20, 30, 60, 90, 200, 30, 40, 20, 60, 15]
         
         const totalOfDays = playlistOrganizer.calculateDaysToWatch(videosDuration, availableMinutes);
         
         expect(totalOfDays).toBe(8);
     });
 });
+
+
+
+

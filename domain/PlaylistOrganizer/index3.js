@@ -122,6 +122,6 @@ const total = calculateDaysToWatch([4, 6, 5], [5, 10]);
 
 // const total = calculateDaysToWatch(videos, week);
 
-console.log("total");
-console.log(total);
+// console.log("total");
+// console.log(total);
 

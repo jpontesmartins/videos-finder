@@ -24,7 +24,7 @@ describe ('playlist organizer', () => {
 
     it ('shoudl return 1 day to watch', () => {
         const week = [ 10, 20 ];
-        const videos = [ 10, 20 ];
+        const videos = [ 10 ];
         
         expect(new Organizer(week, videos).calculateDaysToWatch()).toBe(1);
     });

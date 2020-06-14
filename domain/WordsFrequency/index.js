@@ -8,8 +8,9 @@ class WordsFrequency {
         const text = this.getTextFromVideos();
         const words = text.split(' ');
     
-        console.log(words);
-        const frequenciesList = this.getFrequencies(words);
+        let sanitizedWords = this.sanitizeWords(words);
+        
+        const frequenciesList = this.getFrequencies(sanitizedWords);
         const sortedByFrequency = new Map([...frequenciesList.entries()].sort((a, b) => b[1] - a[1]));
         const firstFiveWords = [...sortedByFrequency].slice(0, 5);
     
@@ -17,9 +18,28 @@ class WordsFrequency {
         return fiveMostFrequentWords;
     }
     
+    sanitizeWords(words) {
+        const wordsToRemove = [' ', '', '-'];
+        let sanitizedWords = [];
+        words.map((word, w) => {
+            if (!wordsToRemove.includes(word)) {
+                sanitizedWords.push(word);
+            }
+        });
+        return sanitizedWords;
+    }
+
     getTextFromVideos() {
-        console.log(this.videos);
-        return 'a b c d e f g h a b f f f g g';
+        let titlesAndDescriptions = [];
+        if (this.videos) {
+            this.videos.map((video, i) => {
+                titlesAndDescriptions.push(video.title);
+                titlesAndDescriptions.push(video.description);
+            });
+        }
+
+        let words = titlesAndDescriptions.join(" ");
+        return words;
     }
 
     getFiveMostFrequentWords(firstFiveWords) {

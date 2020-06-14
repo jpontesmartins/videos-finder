@@ -19,7 +19,11 @@ describe('videos to watch', () => {
         const videosFinder = new VideosFinder(searchTerm, availableMinutes, new MockService());
 
         const frequencies = await videosFinder.getFiveMostFrequentWords();
-        expect(frequencies[0]).toEqual({ "frequency": 4, "word": "f" });
+        expect(frequencies[0]).toEqual({ "frequency": 20, "word": "um" });
+        expect(frequencies[1]).toEqual({ "frequency": 10, "word": "O" });
+        expect(frequencies[2]).toEqual({ "frequency": 10, "word": "JOGO" });
+        expect(frequencies[3]).toEqual({ "frequency": 10, "word": "DOS" });
+        expect(frequencies[4]).toEqual({ "frequency": 10, "word": "GATOS" });
 
     });
 

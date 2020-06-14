@@ -12,35 +12,24 @@ describe('service video ', () => {
 
     });
 
-    it('should return duration in seconds', () => {
+    it('should return duration in seconds', async () => {
         const service = new Service(new MockService());
-        service.searchVideos("cats").then(videos => {
-            expect(videos[0].duration).toBe(NaN);
-            // expect(videos[1].duration).toBe(602);
-            // expect(videos[2].duration).toBe(637);
-            // expect(videos[3].duration).toBe(946);
-        });
+
+        const found = await service.searchVideos("cats");
+        expect(found[0].duration).toBe(960);
+        expect(found[1].duration).toBe(144);
 
     });
 
-    // it ('should return 16*60 sec', () => {
-    //     // duration: 'PT16M',
-    //     // expect('PT16M').toBe(16*60);
-
-    // });
-
-    it ('should return an object from Video entity', () => {
+    it('should return an object from Video entity', async () => {
         const service = new Service(new MockService());
+        const videos = await service.searchVideos("cats");
 
-        service.searchVideos("cats").then(videos => {
-            const first = videos[0];
-            // console.log(first);
-            expect(first.id).toBeDefined();
-            expect(first.title).toBeDefined();
-            expect(first.description).toBeDefined();
-            expect(first.duration).toBeDefined();
-        });
-
+        const first = videos[0];
+        expect(first.id).toBeDefined();
+        expect(first.title).toBeDefined();
+        expect(first.description).toBeDefined();
+        expect(first.duration).toBeDefined();
     });
 
 

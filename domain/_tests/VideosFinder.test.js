@@ -1,44 +1,38 @@
 const VideosFinder = require('../VideosFinder');
-const MockService = require('../../services/_tests/MockService');
+const MockService = require('./MockService');
 
 describe('videos to watch', () => {
-    it('should return 2 videos', () => {
+    it('should return 2 videos', async () => {
         const searchTerm = "cats";
         const week = [15, 120, 30, 150, 20, 40, 90];
         const videosFinder = new VideosFinder(searchTerm, week, new MockService());
 
-        videosFinder.searchVideosToWatch().then(videos => {
-            expect(videos.length).toBe(2);
-        });
+        const videos = await videosFinder.searchVideosToWatch();
+        expect(videos.length).toBe(10);
 
     });
 
-    it('most frequent words', () => {
+    it('most frequent words', async () => {
         const searchTerm = "cats";
         const availableMinutes = [15, 120, 30, 150, 20, 40, 90];
 
         const videosFinder = new VideosFinder(searchTerm, availableMinutes, new MockService());
 
-        videosFinder.getFiveMostFrequentWords().then(frequencies => {
-            expect(frequencies[0]).toEqual({ "frequency": 4, "word": "f" });
-        }).catch(err => {
-            console.log(err);
-        })
+        const frequencies = await videosFinder.getFiveMostFrequentWords();
+        expect(frequencies[0]).toEqual({ "frequency": 4, "word": "f" });
 
     });
 
-    it('total of days to watch all playlist', () => {
+    it('total of days to watch all playlist', async () => {
         const searchTerm = "cats";
+
+        //in minutes
         const week = [15, 120, 30, 150, 20, 40, 90];
 
         const videosFinder = new VideosFinder(searchTerm, week, new MockService());
 
-        videosFinder.getTotalOfDaysToWatch().then(result => {
-            // console.log(result[0].id);
-            expect(result[0].id).toBe("S3IMBSQCa7Y");
-        }).catch(err => {
-            console.error(err);
-        });
+        const totalOfDays = await videosFinder.getTotalOfDaysToWatch();
+        expect(totalOfDays).toBe(8);
 
     });
 

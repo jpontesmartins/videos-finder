@@ -21,13 +21,23 @@ class VideosFinder {
         if (this.videos.length == 0) {
             this.videos = await this.searchVideosToWatch();
         }
-        return this.videos;
-        // return 0;
-        // agora eu tenho a lista de videos aqui...
-        // tenho que percorre-la comparando as duracoes
-        // transformar o Organizer para ler objeto e nao integer
 
-        // return new Organizer(this.minutesAvailable, this.videos).calculateDaysToWatch();
+        let secondsAvailable = []
+        this.minutesAvailable.map((minutes, m) => {
+            secondsAvailable.push(minutes*60);
+        });
+        // console.log("minutes");
+        // console.log(this.minutesAvailable);
+        // console.log(secondsAvailable);
+
+        let durationVideosInSeconds = [];
+        this.videos.map((video, i) => {
+            durationVideosInSeconds.push(video.duration)
+        });
+
+        console.log(durationVideosInSeconds);
+
+        return new Organizer(secondsAvailable, durationVideosInSeconds).calculateDaysToWatch();
     }
 
     async getFiveMostFrequentWords() {

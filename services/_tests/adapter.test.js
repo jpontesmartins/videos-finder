@@ -1,19 +1,20 @@
-// const Service = require('../index');
-// const MockService = require('./MockService');
 const { mockResponse } = require('../Youtube/example-of-pure-response');
 const YoutubeVideo = require('../Youtube/YoutubeVideo');
 
-const adapter = require('../adapter');
-
 describe('adapter convertions', () => {
 
-    it('should convert from YoutubeVideo to Video', async () => {
-        const youtubeVideo = new YoutubeVideo(mockResponse[0]);
-        // console.log(mockResponse[0].id);
-        // console.log(mockResponse[0].contentDetails.duration);
-        expect(youtubeVideo.convert().duration).toBe("PT16M");
-        // expect(mockResponse[0].contentDetails.duration).toBe("PT16M");
+    it('should convert PT16M to 160', async () => {
+        const youtubeVideo = new YoutubeVideo(mockResponse[0]) 
 
+        expect(mockResponse[0].contentDetails.duration).toBe("PT16M");
+        expect(youtubeVideo.convert().duration).toBe(960);
+    });
+
+    it('should convert PT2M24S to 144', async () => {
+        const youtubeVideo = new YoutubeVideo(mockResponse[1]) 
+
+        expect(mockResponse[1].contentDetails.duration).toBe("PT2M24S");
+        expect(youtubeVideo.convert().duration).toBe(144);
     });
 
 });

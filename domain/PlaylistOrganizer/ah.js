@@ -1,5 +1,5 @@
-const org = require('./index3');
-
+// const org = require('./index3');
+const Organizer = require('./Organizer');
 
 // const week = [5, 10]; //i
 // const videos = [4, 6, 5]; //j
@@ -9,9 +9,8 @@ const videos = [20, 30, 60, 90, 200, 30, 40, 20, 60, 15]; //j
 
 // const org = new PlaylistOrganizer(week, videos);
 
-const total = org.calculateDaysToWatch(videos, week);
+// const total = org.calculateDaysToWatch(videos, week);
 
+const aaah = new Organizer(week, videos).calculateDaysToWatch();
 
-console.log(total);
-
-
+console.log(aaah);

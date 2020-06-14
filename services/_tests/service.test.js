@@ -1,4 +1,4 @@
-const Service = require('../ServiceVideo');
+const Service = require('../index');
 const MockService = require('./MockService');
 
 describe('service video ', () => {

@@ -1,95 +1,79 @@
 
-class PlaylistOrganizer {
+class Organizer {
     constructor(week, videos) {
         this.week = week;
         this.videos = videos;
     }
 
-    calculate() {
+    calculateDaysToWatch() {
         let sizeWeek = this.week.length - 1;
         let sizeVideos = this.videos.length - 1;
         let totalDays = 0;
         let exit = false;
-        let dayIndex = 0;
+        let dayInWeekIndex = 0;
         let videoIndex = 0;
 
         while (!exit) {
-            if (videoIndex > sizeVideos) {
-                break;
+            if (videoIndex > sizeVideos) break;
+
+            let availableTime = this.week[dayInWeekIndex];
+            let durationVideo = this.videos[videoIndex];
+
+            //ignore if video too long 
+            if (durationVideo >= this.longestAvailableTime()) {
+                videoIndex++;
+                durationVideo = this.videos[videoIndex];
             }
-            console.log("aaaaaa!");
-    
-            let tempoDisponivel = this.week[dayIndex];
-            let tempoDoVideo = this.videos[videoIndex];
-    
-            // ignora videos grandes
-            tempoDoVideo = this.ignoreTooLongVideos(tempoDoVideo, videoIndex);
-    
-            // a cada dia eu vejo quais que eu posso assistir
+
             let sumDurationVideos = 0;
             let sair2 = false
             while (!sair2) {
-            console.log("bbbbbbbb!");
+                durationVideo = this.videos[videoIndex];
+                sumDurationVideos += durationVideo;
 
-                tempoDoVideo = this.videos[videoIndex];
-                sumDurationVideos += tempoDoVideo;
-    
-                // tempo disponivel > soma dos videos
-                if (tempoDisponivel > sumDurationVideos) {
+                // tempo disponivel MAIOR que a soma dos videos
+                if (availableTime > sumDurationVideos) {
                     videoIndex++;
                     if (videoIndex > sizeVideos) {
                         break;
                     }
                 }
-    
-                // tempo disponivel < soma dos videos
-                if (tempoDisponivel < sumDurationVideos) {
+
+                // tempo disponivel MENOR que a soma dos videos
+                if (availableTime < sumDurationVideos) {
                     totalDays++;
                     sumDurationVideos = 0;
-                    if (dayIndex == sizeWeek) {
-                        dayIndex = 0;
+
+                    if (dayInWeekIndex == sizeWeek) {
+                        dayInWeekIndex = 0;
                     } else {
-                        dayIndex++;
+                        dayInWeekIndex++;
                     }
-    
+
                     sair2 = true;
                 }
-    
-                // tempo disponivel igual o do video
-                if (tempoDisponivel == tempoDoVideo) {
+
+                //tempo igual
+                if (availableTime == durationVideo) {
                     totalDays++;
                     videoIndex++;
-    
-                    dayIndex = dayIndex == sizeWeek ? 0 : dayIndex++;
-    
+                    dayInWeekIndex = (dayInWeekIndex == sizeWeek) ? 0 : dayInWeekIndex++;
+
                     if (videoIndex > sizeVideos) {
                         break;
                     }
+
                 }
-    
+
             }
-    
+
         }
-    
         return totalDays
     }
 
-
-    ignoreTooLongVideos(tempoDoVideo, videoIndex) {
-        const longestAvailableTime = [...this.week].sort((a, b) => b - a)[0];
-
-        if (tempoDoVideo >= longestAvailableTime) {
-            videoIndex++;
-            tempoDoVideo = this.videos[videoIndex];
-        }
-        return tempoDoVideo;
+    longestAvailableTime() {
+        return [...this.week].sort((a, b) => b - a)[0];
     }
-
-    getTotalOfDays() {
-        return this.calculate();
-    }
-
-
 }
 
-module.exports = PlaylistOrganizer
+module.exports = Organizer;

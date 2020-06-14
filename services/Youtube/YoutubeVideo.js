@@ -18,6 +18,7 @@ class Video {
         const minutes = this.info.contentDetails.duration.split("M")[0].replace("PT","");
         const seconds = (this.info.contentDetails.duration.split("M")[1]).replace("S","");
         
+        
         const minutesInSeconds = parseInt(minutes) * 60;
         const total = minutesInSeconds + parseInt(seconds);
        return total;

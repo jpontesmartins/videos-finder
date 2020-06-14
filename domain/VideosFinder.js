@@ -1,7 +1,8 @@
 const wordsFrequency = require('./WordsFrequency');
-const playlistOrganizer = require('./PlaylistOrganizer');
-const Service = require('../services/ServiceVideo');
-const adapter = require('../services/ServiceVideo/adapter');
+const Organizer = require('./PlaylistOrganizer');
+
+const Service = require('../services');
+const adapter = require('../services/adapter');
 
 class VideosFinder {
     constructor(searchTerm, minutesAvailable, service) {
@@ -16,11 +17,23 @@ class VideosFinder {
         return this.videos;
     }
 
-    getTotalOfDaysToWatch() {
-        return playlistOrganizer.calculateDaysToWatch(this.videos, this.minutesAvailable);
+    async getTotalOfDaysToWatch() {
+        if (this.videos.length == 0) {
+            this.videos = await this.searchVideosToWatch();
+        }
+        return this.videos;
+        // return 0;
+        // agora eu tenho a lista de videos aqui...
+        // tenho que percorre-la comparando as duracoes
+        // transformar o Organizer para ler objeto e nao integer
+
+        // return new Organizer(this.minutesAvailable, this.videos).calculateDaysToWatch();
     }
 
-    getFiveMostFrequentWords() {
+    async getFiveMostFrequentWords() {
+        if (this.videos.length == 0) {
+            this.videos = await this.searchVideosToWatch();
+        }
         return wordsFrequency.calculeMostFrequentWords(this.videos);
     }
 }

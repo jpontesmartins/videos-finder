@@ -39,14 +39,14 @@ class YoutubeService {
     }
 
     searchByTerm(term) {
-        term = 'cats';
+        // term = 'cats';
         console.log(`searchin for: ${term}`)
         return new Promise((resolve, reject) => {
             this.provider.search.list({
                 part: 'id, snippet',
                 q: term,
                 videoDuration: 'any',
-                maxResults: 2
+                maxResults: 4
             }, (err, data) => {
                 if (data) {
                     resolve(data.data.items);

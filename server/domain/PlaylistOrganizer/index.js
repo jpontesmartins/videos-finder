@@ -3,9 +3,16 @@ class Organizer {
     constructor(week, videos) {
         this.week = week;
         this.videos = videos;
+        // this.week = [5, 10];
+        // this.videos = [4, 6, 5];
     }
 
     calculateDaysToWatch() {
+        // console.log("olha...");
+        // console.log(this.week);
+        // console.log(this.videos);
+        // console.log("---------------");
+
         let sizeWeek = this.week.length - 1;
         let sizeVideos = this.videos.length - 1;
         let totalDays = 0;
@@ -21,6 +28,7 @@ class Organizer {
 
             //ignore if video too long 
             if (durationVideo >= this.longestAvailableTime()) {
+                // this.videos[videoIndex] = 0;
                 videoIndex++;
                 durationVideo = this.videos[videoIndex];
             }

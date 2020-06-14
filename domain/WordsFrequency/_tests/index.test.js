@@ -1,10 +1,13 @@
-const wordFrequency = require('../index');
+const WordFrequency = require('../index');
 
 const { videos } = require('./mockVideosList');
 
 describe('words frequency', () => {
     it('should return 5 most frequent words', () => {
-        const result = wordFrequency.calculeMostFrequentWords(videos);
+
+        let wordFrequency = new WordFrequency(videos);
+
+        const result = wordFrequency.calculeMostFrequentWords();
 
         expect(result[0]).toEqual({ frequency: 4, word: "f" });
         expect(result[1]).toEqual({ frequency: 3, word: "g" });

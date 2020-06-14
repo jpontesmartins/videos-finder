@@ -25,11 +25,8 @@ describe('videos to watch', () => {
 
     it('total of days to watch all playlist', async () => {
         const searchTerm = "cats";
-
-        //in minutes
-        const week = [15, 120, 30, 150, 20, 40, 90];
-
-        const videosFinder = new VideosFinder(searchTerm, week, new MockService());
+        const weekInMinutes = [15, 120, 30, 150, 20, 40, 90];
+        const videosFinder = new VideosFinder(searchTerm, weekInMinutes, new MockService());
 
         const totalOfDays = await videosFinder.getTotalOfDaysToWatch();
         expect(totalOfDays).toBe(8);

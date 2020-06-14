@@ -28,11 +28,3 @@ class Video {
 
 module.exports = Video;
 
-
-
-// const {mockResponse} = require('./example-of-pure-response');
-
-// const video = new Video(mockResponse[0]);
-// console.log(video.convert());
-// console.log(mockResponse[0]);
-

@@ -1,8 +1,7 @@
-const wordsFrequency = require('./WordsFrequency');
+const WordsFrequency = require('./WordsFrequency');
 const Organizer = require('./PlaylistOrganizer');
 
 const Service = require('../services');
-const adapter = require('../services/adapter');
 
 class VideosFinder {
     constructor(searchTerm, minutesAvailable, service) {
@@ -18,34 +17,35 @@ class VideosFinder {
     }
 
     async getTotalOfDaysToWatch() {
-        if (this.videos.length == 0) {
-            this.videos = await this.searchVideosToWatch();
-        }
-
-        let secondsAvailable = []
-        this.minutesAvailable.map((minutes, m) => {
-            secondsAvailable.push(minutes*60);
-        });
-        // console.log("minutes");
-        // console.log(this.minutesAvailable);
-        // console.log(secondsAvailable);
-
-        let durationVideosInSeconds = [];
-        this.videos.map((video, i) => {
-            durationVideosInSeconds.push(video.duration)
-        });
-
-        console.log(durationVideosInSeconds);
-
+        if (this.videos.length == 0) this.videos = await this.searchVideosToWatch();
+        
+        let secondsAvailable = this.secondsAvailableInWeek();
+        let durationVideosInSeconds = this.videosDurationInSeconds();
         return new Organizer(secondsAvailable, durationVideosInSeconds).calculateDaysToWatch();
     }
 
     async getFiveMostFrequentWords() {
-        if (this.videos.length == 0) {
-            this.videos = await this.searchVideosToWatch();
-        }
+        if (this.videos.length == 0) this.videos = await this.searchVideosToWatch();
+        const wordsFrequency = new WordsFrequency(this.videos);
         return wordsFrequency.calculeMostFrequentWords(this.videos);
     }
+
+    videosDurationInSeconds() {
+        let durationVideosInSeconds = [];
+        this.videos.map((video, i) => {
+            durationVideosInSeconds.push(video.duration);
+        });
+        return durationVideosInSeconds;
+    }
+
+    secondsAvailableInWeek() {
+        let secondsAvailable = [];
+        this.minutesAvailable.map((minutes, m) => {
+            secondsAvailable.push(minutes * 60);
+        });
+        return secondsAvailable;
+    }
+
 }
 
 module.exports = VideosFinder;

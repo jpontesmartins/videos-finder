@@ -5,7 +5,6 @@ class MockServiceTotalDays {
     }
 
     async search(term) {
-        // console.log("MockService!");
         return new Promise((resolve, reject)=> {
             resolve(mockResponse);
         });

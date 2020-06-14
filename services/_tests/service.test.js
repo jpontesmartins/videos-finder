@@ -32,11 +32,4 @@ describe('service video ', () => {
         expect(first.duration).toBeDefined();
     });
 
-
-    // it('should return video-response to Video entity', () => {
-    //     // const service = new Service(MockService);
-    //     // before conversion (in minutes)
-    //     // expect(service.getVideos()[0].duration).toBe("PT2M24S");
-    // });
-
 });

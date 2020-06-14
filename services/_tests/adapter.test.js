@@ -1,4 +1,4 @@
-const { mockResponse } = require('../Youtube/example-of-pure-response');
+const { mockResponse } = require('./response-from-youtube');
 const YoutubeVideo = require('../Youtube/YoutubeVideo');
 
 describe('adapter convertions', () => {

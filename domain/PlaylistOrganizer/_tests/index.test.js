@@ -1,4 +1,4 @@
-const playlistOrganizer = require('../index');
+const playlistOrganizer = require('../index3');
 
 // - The user will input how much time he can expend daily during a week. For
 // example, [15, 120, 30, 150, 20, 40, 90] in minutes.
@@ -13,15 +13,26 @@ const playlistOrganizer = require('../index');
 
 
 describe ('playlist organizer', () => {
-    it('should return 8 days to watch', () => {
-        const availableMinutes = [15, 120, 30, 150, 20, 40, 90];
-        const videosDuration = [20, 30, 60, 90, 200, 30, 40, 20, 60, 15]
+    it ('shoudl return...', () => {
+        const week = [5, 10]; //i
+        const videos = [4, 6, 5]; //j
         
-        const totalOfDays = playlistOrganizer.calculateDaysToWatch(videosDuration, availableMinutes);
+        const totalOfDays = playlistOrganizer.calculateDaysToWatch(videos, week);
+        
+        expect(totalOfDays).toBe(3);
+    });
+
+    it ('shoudl return...', () => {
+        const week = [15, 120, 30, 150, 20, 40, 90]; //i
+        const videos = [20, 30, 60, 90, 200, 30, 40, 20, 60, 15]; //j
+        
+        const totalOfDays = playlistOrganizer.calculateDaysToWatch(videos, week);
         
         expect(totalOfDays).toBe(8);
-        // expect(1).toBe(1);
     });
+
+
+
 });
 
 

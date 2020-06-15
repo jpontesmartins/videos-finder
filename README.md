@@ -8,7 +8,15 @@ I use the dependency ```googleapis``` to make the call.
 
 ```
 git clone https://github.com/jpontesmartins/videos-finder.git
+
+$ cd server 
+$ npm install
+
+$ cd ../client
+$ npm install
 ```
+
+
 
 ## Enviroment Variables
 

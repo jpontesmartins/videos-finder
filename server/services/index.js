@@ -7,6 +7,7 @@ class Service {
     }
 
     async searchVideos(searchTerm) {
+        console.log(searchTerm);
         const videos = await this.service.search(searchTerm);
 
         const convertedVideos = []

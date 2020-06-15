@@ -19,14 +19,16 @@ class SearchForm extends Component {
           <div style={card}>
             <div>Search Term</div>
             <div>
-              <input type="text" placeholder="search term" />
+              <input type="text" onChange={this.props.changeTerm}
+                name="searchTerm" placeholder="search term" />
             </div>
           </div>
 
           <div style={card}>
             <div>Available time per day in minutes</div>
             <div>
-              <input type="text" placeholder="10, 20, 30, 40, 50, 60, 70" />
+              <input type="text"  onChange={this.props.changeWeek} 
+                name="week" placeholder="10, 20, 30, 40, 50, 60, 70" />
             </div>
           </div>
         </div>
@@ -34,7 +36,6 @@ class SearchForm extends Component {
       </Fragment>
     );
   }
-
 
 }
 

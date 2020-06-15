@@ -28,5 +28,5 @@ $ npm run dev
 ```
 
 ## TO DO 
-
-
+- Its not perfect;
+- 

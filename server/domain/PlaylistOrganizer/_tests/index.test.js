@@ -22,7 +22,7 @@ describe ('playlist organizer', () => {
         expect(new Organizer(week, videos).calculateDaysToWatch()).toBe(1);
     });
 
-    it ('shoudl return 1 day to watch', () => {
+    it ('should return 1 day to watch', () => {
         const week = [ 10, 20 ];
         const videos = [ 10 ];
         

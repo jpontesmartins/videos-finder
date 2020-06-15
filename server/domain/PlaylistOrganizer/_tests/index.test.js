@@ -15,8 +15,19 @@ describe ('playlist organizer', () => {
         expect(new Organizer(week, videos).calculateDaysToWatch()).toBe(8);
     });
 
+    it ('shoudl return 1 day to watch', () => {
+        const week = [ 10, 20 ];
+        const videos = [ 6, 4 ];
+        
+        expect(new Organizer(week, videos).calculateDaysToWatch()).toBe(1);
+    });
+
+    it ('shoudl return 1 day to watch', () => {
+        const week = [ 10, 20 ];
+        const videos = [ 10 ];
+        
+        expect(new Organizer(week, videos).calculateDaysToWatch()).toBe(1);
+    });
+
 });
-
-
-
 

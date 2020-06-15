@@ -21,6 +21,7 @@ class Organizer {
 
             //ignore if video too long 
             if (durationVideo >= this.longestAvailableTime()) {
+                // this.videos[videoIndex] = 0;
                 videoIndex++;
                 durationVideo = this.videos[videoIndex];
             }

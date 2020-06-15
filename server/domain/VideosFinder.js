@@ -21,7 +21,9 @@ class VideosFinder {
         
         let secondsAvailable = this.secondsAvailableInWeek();
         let durationVideosInSeconds = this.videosDurationInSeconds();
-        return new Organizer(secondsAvailable, durationVideosInSeconds).calculateDaysToWatch();
+
+        const organizer = new Organizer(secondsAvailable, durationVideosInSeconds).calculateDaysToWatch();
+        return organizer;
     }
 
     async getFiveMostFrequentWords() {

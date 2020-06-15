@@ -20,7 +20,6 @@ app.get('/search', async (req, res) => {
     const videoFinder = new VideosFinder(term, weekConverted, new YoutubeService());
 
     const videos = await videoFinder.searchVideosToWatch();
-    console.log(videos);
 
     const totalOfDays = await videoFinder.getTotalOfDaysToWatch();
     const moreFrequentWords = await videoFinder.getFiveMostFrequentWords();
@@ -49,7 +48,6 @@ function validateFields(req) {
         weekConverted.push(parseInt(week));
     });
 
-    console.log(weekConverted);
     return { term, weekConverted };
 }
 

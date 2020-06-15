@@ -22,9 +22,6 @@ class VideosFinder {
         let secondsAvailable = this.secondsAvailableInWeek();
         let durationVideosInSeconds = this.videosDurationInSeconds();
         
-        console.log("secondsAvailable");
-        console.log(secondsAvailable);
-
         const organizer = new Organizer(secondsAvailable, durationVideosInSeconds).calculateDaysToWatch();
         return organizer;
     }
@@ -38,8 +35,6 @@ class VideosFinder {
     videosDurationInSeconds() {
         let durationVideosInSeconds = [];
         this.videos.map((video, i) => {
-            console.log("video.duration");
-            console.log(video.duration);
             durationVideosInSeconds.push(video.duration);
         });
         return durationVideosInSeconds;
@@ -48,8 +43,6 @@ class VideosFinder {
     secondsAvailableInWeek() {
         let secondsAvailable = [];
 
-        console.log("this.minutesAvailable");
-        console.log(this.minutesAvailable);
         if (this.minutesAvailable) {
             this.minutesAvailable.map((minutes, m) => {
                 secondsAvailable.push(minutes * 60);

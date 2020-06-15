@@ -37,6 +37,16 @@ describe('videos to watch', () => {
 
     });
 
+    it('total of days to watch all playlist (problem minutes and seconds)', async () => {
+        const searchTerm = "cats";
+        const weekInMinutes = [15, 120, 30, 150, 20, 40, 90];
+        const videosFinder = new VideosFinder(searchTerm, weekInMinutes, new MockService());
+
+        const totalOfDays = await videosFinder.getTotalOfDaysToWatch();
+        expect(totalOfDays).toBe(8);
+
+    });
+
 });
 
 

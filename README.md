@@ -25,13 +25,18 @@ $ npm test
 
 ## Development
 
+### Run project
+
 ```
 $ cd server
 $ npm run dev
 ```
 
+The server side is in ```localhost:5000```  
+The client side is in ```localhost:8080```
+
 ## TO DO 
 - It's not 100%;
-- I tried to follow **Single Responsabilty** principle and **Open/Closed** principle from SOLID, but some parts are still together, nothing that a calm refactoring and second look doesn't solve;
-- There some issue with my algorithm of organize videos to watch, I guess it's something i have missed, my bad, sorry! The tests are working fine; maybe if I add more tests I would have a better feedback of what's going on.
+- I tried to follow **Single Responsabilty** principle and **Open/Closed** principle from SOLID, but some parts are still together, nothing that a calm refactoring and a second look doesn't solve;
+- There is some issue with my algorithm of organize videos to watch, I guess it's something i have missed, my bad, sorry! The tests are working fine; maybe if I add more tests I would have a better feedback of what's going on.
 

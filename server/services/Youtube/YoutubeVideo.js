@@ -14,6 +14,9 @@ class Video {
     }
 
     _minutesToSeconds() {
+        console.log(" ------ this.info ------ ");
+        console.log(this.info);
+
         const minutes = this.info.contentDetails.duration.split("M")[0].replace("PT","");
         let seconds = (this.info.contentDetails.duration.split("M")[1]).replace("S","");
         if (!seconds) seconds = 0;

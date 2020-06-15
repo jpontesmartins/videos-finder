@@ -18,7 +18,7 @@ class Videos extends Component {
       <div style={features}>
         videos title;<br></br>
         {this.props.videos.map((video, v) => {
-          return <div key={v}> {video.title} </div>
+          return <div key={v}> [{v}] - {video.title} </div>
         })}
       </div>
     );

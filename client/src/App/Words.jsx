@@ -13,7 +13,7 @@ class Words extends Component {
       <div style={features}>
         most 5 frequent words;<br></br>
         {this.props.words.map((word, w) => {
-          return <div key={w}> {word.word} - {word.frequency} </div>
+          return <div key={w}> [{w}] - {word.word} - {word.frequency} </div>
         })}
       </div>
     );

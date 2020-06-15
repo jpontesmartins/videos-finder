@@ -13,7 +13,6 @@ class YoutubeService {
 
     async search(term) {
         const videos = await this.searchByTerm(term);
-
         const promises = [];
         videos.map((simpleVideo, i) => {
             promises.push(this.searchByVideoId(simpleVideo));
@@ -23,6 +22,8 @@ class YoutubeService {
     }
 
     searchByVideoId(video) {
+        console.log("search by video id");
+        console.log(video);
         return new Promise((resolve, reject) => {
             this.provider.videos.list({
                 part: 'id, snippet, contentDetails',
@@ -46,7 +47,7 @@ class YoutubeService {
                 part: 'id, snippet',
                 q: term,
                 videoDuration: 'any',
-                maxResults: 4
+                maxResults: 2
             }, (err, data) => {
                 if (data) {
                     resolve(data.data.items);

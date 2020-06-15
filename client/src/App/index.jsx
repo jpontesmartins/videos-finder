@@ -19,11 +19,26 @@ class App extends Component {
     }
 
     this.handleClick = this.handleClick.bind(this);
+    this.handleTermChange = this.handleTermChange.bind(this);
+    this.handleTermWeek = this.handleTermWeek.bind(this);
+  }
+
+  handleTermChange(e){
+    console.log(e.target.value);
+    this.setState({
+      term: e.target.value
+    })
+  }
+  handleTermWeek(e){
+    console.log(e.target.value);
+    this.setState({
+      week: e.target.value
+    })
   }
 
   handleClick() {
     axios
-      .get("http://localhost:5000/search")
+      .get(`http://localhost:5000/search?searchTerm=${this.state.term}&week=${this.state.week}`)
       .then(({ data }) => {
         this.setState({
           videos: data.videos,
@@ -44,7 +59,9 @@ class App extends Component {
 
         <div style={main}>
           
-         <SearchForm />
+         <SearchForm 
+          changeTerm={this.handleTermChange}
+          changeWeek={this.handleTermWeek}/>
 
           <div style={card}>
             <input type="button" value="search" style={button}

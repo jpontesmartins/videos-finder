@@ -12,13 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 
-app.get('/videos', async (req, res) => {
-    
-    res.send("search videos");
-});
-
-app.get('/real', async (req, res) => {
-
+app.get('/search', async (req, res) => {
     const videoFinder = new VideosFinder("dogs", [30, 60], new MockService());
     // const videoFinder = new VideosFinder("dogs", [200, 100], new YoutubService());
 
@@ -32,9 +26,9 @@ app.get('/real', async (req, res) => {
         moreFrequentWords
     }
     res.send(response);
-    
 
 });
+
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
 

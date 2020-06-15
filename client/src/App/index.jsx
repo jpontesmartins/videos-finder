@@ -7,7 +7,9 @@ class App extends Component {
     super(props);
 
     this.state = {
-
+      videos: [],
+      totalOfDays: 1,
+      moreFrequentWords: []
     }
 
     this.handleClick = this.handleClick.bind(this);
@@ -15,17 +17,50 @@ class App extends Component {
 
   handleClick() {
     axios
-      .get("http://localhost:5000/real")
+      .get("http://localhost:5000/search")
       .then(({ data }) => {
-        console.log(data);
+        this.setState({
+          videos: data.videos,
+          totalOfDays: data.totalOfDays,
+          moreFrequentWords: data.moreFrequentWords
+        });
+
+        console.log("this.state.videos");
+        this.state.videos.map((video, i) => {
+          console.log(video.title);
+        })
+        console.log(`total of days: ${this.state.totalOfDays}`);
+        console.log(`frequent words: `);
+        this.state.moreFrequentWords.map((word, i)=> {
+          console.log(`word: ${word.word}`)
+        })
+
       });
 
-}
+  }
+
+  showVideos() {
+    console.log(this.state.videos);
+    return this.state.videos
+  }
 
   render() {
 
+    let titleVideos = []
+    this.state.videos.map((video, i) => {
+      titleVideos.push(video.title);
+    });
+
+    console.log(titleVideos);
+
+    let wordsFrequncy = []
+    this.state.moreFrequentWords.map((word, i) => {
+      wordsFrequncy.push(word);
+    });
+    console.log(wordsFrequncy);
+
     const main = {
-      fontSize: "20px", 
+      fontSize: "20px",
       backgroundColor: "#FF",
       boxShadow: "0 2px 8px 0 #444",
       margin: "10px",
@@ -38,13 +73,20 @@ class App extends Component {
     }
 
     const button = {
-      backgroundColor: "#B00",
+      backgroundColor: "#088",
       fontSize: "20px",
       color: "#FFF",
       margin: "10px",
       padding: "10px"
     }
 
+    const features = {
+      backgroundColor: "#088",
+      fontSize: "20px",
+      color: "#FFF",
+      margin: "10px",
+      padding: "10px"
+    }
 
     return (
       <Fragment>
@@ -60,7 +102,7 @@ class App extends Component {
                 <input type="text" placeholder="search term" />
               </div>
             </div>
-            
+
             <div style={card}>
               <div>Available time per day in minutes</div>
               <div>
@@ -75,15 +117,15 @@ class App extends Component {
               onClick={this.handleClick} />
           </div>
 
-          <div>
-            videos descripion;
+          <div style={features}>
+            videos description;
           </div>
 
-          <div>
+          <div style={features}>
             most 5 frequent words;
           </div>
 
-          <div>
+          <div style={features}>
             total days to watch;
           </div>
 

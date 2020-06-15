@@ -8,10 +8,6 @@ class Videos extends Component {
     super(props);
   }
 
-  componentDidUpdate(prevProps) {
-    console.log(prevProps);
-  }
-
   render() {
 
     return (

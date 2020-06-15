@@ -22,8 +22,6 @@ class YoutubeService {
     }
 
     searchByVideoId(video) {
-        console.log("search by video id");
-        console.log(video);
         return new Promise((resolve, reject) => {
             this.provider.videos.list({
                 part: 'id, snippet, contentDetails',
@@ -40,8 +38,7 @@ class YoutubeService {
     }
 
     searchByTerm(term) {
-        // term = 'cats';
-        console.log(`searchin for: ${term}`)
+        console.log(`searching for: ${term}`)
         return new Promise((resolve, reject) => {
             this.provider.search.list({
                 part: 'id, snippet',

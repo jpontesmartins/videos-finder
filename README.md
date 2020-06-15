@@ -6,6 +6,10 @@ Videos Finder
 Guide to execute VideosFinder in a local machine.  
 I use the dependency ```googleapis``` to make the call.  
 
+```
+git clone https://github.com/jpontesmartins/videos-finder.git
+```
+
 ## Enviroment Variables
 
 Create ".env" file inside /server to use Youtube API 
